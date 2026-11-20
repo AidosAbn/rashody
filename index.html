@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Мои расходы</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="page">
+    <header class="page-header">
+      <p class="eyebrow">Личный учёт</p>
+      <h1>Мои расходы</h1>
+      <p class="intro">Каждая трата на своём месте.</p>
+    </header>
+
+    <section class="summary" aria-labelledby="total-heading">
+      <div class="summary-heading">
+        <h2 id="total-heading">Итог за текущий месяц</h2>
+        <span id="current-month" class="month"></span>
+      </div>
+      <p id="month-total" class="total">0 ₸</p>
+    </section>
+
+    <section class="card form-card" aria-labelledby="form-heading">
+      <h2 id="form-heading">Добавить трату</h2>
+      <form id="expense-form" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label for="amount">Сумма, ₸</label>
+            <input id="amount" name="amount" type="text" inputmode="numeric"
+              placeholder="5 000" required aria-describedby="amount-error">
+            <p id="amount-error" class="field-error" hidden></p>
+          </div>
+
+          <div class="field">
+            <label for="category">Категория</label>
+            <select id="category" name="category" required aria-describedby="category-error">
+              <option value="Еда">Еда</option>
+              <option value="Транспорт">Транспорт</option>
+              <option value="Дом">Дом</option>
+              <option value="Другое">Другое</option>
+              <option value="Долги">Долги</option>
+            </select>
+            <p id="category-error" class="field-error" hidden></p>
+          </div>
+
+          <div class="field date-field">
+            <label for="date">Дата</label>
+            <input id="date" name="date" type="date" required aria-describedby="date-error">
+            <p id="date-error" class="field-error" hidden></p>
+            <div class="date-shortcuts" role="group" aria-label="Быстро выбрать дату">
+              <button type="button" class="shortcut" data-days-ago="3">3 дня назад</button>
+              <button type="button" class="shortcut" data-days-ago="7">7 дней назад</button>
+              <button type="button" class="shortcut" data-days-ago="14">14 дней назад</button>
+              <button type="button" class="shortcut" data-month-ago>Месяц назад</button>
+            </div>
+          </div>
+
+          <div class="field comment-field">
+            <label for="comment">Комментарий <span class="optional">необязательно</span></label>
+            <textarea id="comment" name="comment" rows="2" placeholder="На что потратили?"></textarea>
+          </div>
+        </div>
+        <div class="form-footer">
+          <p class="storage-note">Данные сохраняются в этом браузере</p>
+          <button type="submit" class="primary-button">Добавить</button>
+        </div>
+      </form>
+      <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+      <p id="storage-error" class="field-error storage-error" role="alert" hidden></p>
+    </section>
+
+    <section class="card list-card" aria-labelledby="list-heading">
+      <div class="list-heading">
+        <h2 id="list-heading">Все траты</h2>
+        <span id="expense-count" class="expense-count">Записей: 0</span>
+      </div>
+      <div id="empty-state" class="empty-state">
+        <p class="empty-title">Пока нет трат</p>
+        <p>Добавьте первую трату в форме выше.</p>
+      </div>
+      <ol id="expense-list" class="expense-list"></ol>
+    </section>
+    <noscript><p class="field-error">Включите JavaScript, чтобы добавлять и сохранять траты.</p></noscript>
+  </main>
+</body>
+</html>
