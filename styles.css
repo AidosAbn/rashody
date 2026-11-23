@@ -97,6 +97,23 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { border-color
 .form-status { min-height: 20px; margin-top: 10px; color: #286443; font-size: 13px; }
 .storage-error { margin-top: 0; }
 
+.budget-card { padding: 28px 30px 20px; margin-bottom: 24px; }
+.budget-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 16px; }
+.budget-month { color: var(--muted); font-size: 13px; }
+.budget-month::first-letter { text-transform: uppercase; }
+.budget-category { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 16px; padding: 22px 0; }
+.budget-category + .budget-category { border-top: 1px solid #eeedf0; }
+.budget-details, .budget-controls { min-width: 0; }
+.budget-category-name { margin: 0; font-size: 16px; font-weight: 600; }
+.budget-limit { margin-top: 6px; color: var(--muted); font-size: 14px; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.budget-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.budget-save, .budget-remove { min-height: 44px; border: 1px solid #d8d3e9; border-radius: 8px; padding: 9px 14px; font-size: 14px; }
+.budget-save { background: var(--accent); border-color: var(--accent); color: #fff; }
+.budget-save:hover { background: #39346f; }
+.budget-remove { background: #fff; color: var(--accent); }
+.budget-remove:hover { background: #f7f6fb; }
+.budget-card :disabled { cursor: not-allowed; opacity: 0.6; }
+
 .list-heading { padding: 24px 30px; border-bottom: 1px solid #eeedf0; }
 .expense-count { font-size: 13px; color: var(--muted); }
 .expense-list { margin: 0; padding: 0; list-style: none; }
@@ -124,6 +141,9 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { border-color
   .storage-note { text-align: center; }
   .primary-button { width: 100%; }
   .form-status { text-align: center; }
+  .budget-card { padding: 22px 20px 16px; margin-bottom: 18px; }
+  .budget-category { grid-template-columns: 1fr; gap: 14px; padding: 20px 0; }
+  .budget-actions > button { flex: 1; }
   .list-heading { padding: 20px; }
   .expense { padding: 20px; }
   .expense-amount { font-size: 18px; }

@@ -74,6 +74,35 @@
       <p id="storage-error" class="field-error storage-error" role="alert" hidden></p>
     </section>
 
+    <section class="card budget-card" aria-labelledby="budget-heading">
+      <div class="budget-heading">
+        <h2 id="budget-heading">Бюджет по категориям</h2>
+        <span id="budget-month" class="budget-month"></span>
+      </div>
+      <div id="budget-list" class="budget-list"></div>
+      <p id="budget-status" class="form-status" role="status" aria-live="polite"></p>
+      <p id="budget-storage-error" class="field-error storage-error" role="alert" hidden></p>
+      <template id="budget-category-template">
+        <form class="budget-category" novalidate>
+          <div class="budget-details">
+            <h3 class="budget-category-name"></h3>
+            <p class="budget-limit"></p>
+          </div>
+          <div class="budget-controls">
+            <div class="field">
+              <label>Лимит на месяц, ₸</label>
+              <input type="text" inputmode="numeric" placeholder="15 000" required>
+              <p class="field-error" hidden></p>
+            </div>
+            <div class="budget-actions">
+              <button type="submit" class="budget-save">Сохранить</button>
+              <button type="button" class="budget-remove" hidden>Убрать лимит</button>
+            </div>
+          </div>
+        </form>
+      </template>
+    </section>
+
     <section class="card list-card" aria-labelledby="list-heading">
       <div class="list-heading">
         <h2 id="list-heading">Все траты</h2>
