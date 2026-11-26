@@ -105,7 +105,8 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { border-color
 .budget-category + .budget-category { border-top: 1px solid #eeedf0; }
 .budget-details, .budget-controls { min-width: 0; }
 .budget-category-name { margin: 0; font-size: 16px; font-weight: 600; }
-.budget-limit { margin-top: 6px; color: var(--muted); font-size: 14px; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.budget-limit, .budget-spent, .budget-remaining { margin-top: 6px; color: var(--muted); font-size: 14px; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.budget-remaining { color: #222838; font-weight: 600; }
 .budget-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
 .budget-save, .budget-remove { min-height: 44px; border: 1px solid #d8d3e9; border-radius: 8px; padding: 9px 14px; font-size: 14px; }
 .budget-save { background: var(--accent); border-color: var(--accent); color: #fff; }

@@ -79,6 +79,7 @@
         <h2 id="budget-heading">Бюджет по категориям</h2>
         <span id="budget-month" class="budget-month"></span>
       </div>
+      <p id="budget-calculation-error" class="field-error" role="alert" hidden>Не удалось прочитать траты. Расчёт расходов и остатков недоступен.</p>
       <div id="budget-list" class="budget-list"></div>
       <p id="budget-status" class="form-status" role="status" aria-live="polite"></p>
       <p id="budget-storage-error" class="field-error storage-error" role="alert" hidden></p>
@@ -87,6 +88,8 @@
           <div class="budget-details">
             <h3 class="budget-category-name"></h3>
             <p class="budget-limit"></p>
+            <p class="budget-spent"></p>
+            <p class="budget-remaining"></p>
           </div>
           <div class="budget-controls">
             <div class="field">

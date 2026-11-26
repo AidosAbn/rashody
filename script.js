@@ -35,7 +35,7 @@
   }
 
   function formatMoney(amount) {
-    return `${String(amount).replace(/\B(?=(\d{3})+(?!\d))/g, " ")} ₸`;
+    return `${String(amount).replace(/^-/, "−").replace(/\B(?=(\d{3})+(?!\d))/g, " ")} ₸`;
   }
 
   function parseAmount(value) {
@@ -107,15 +107,26 @@
 
   function renderBudgets(today) {
     const month = localDate(today).slice(0, 7);
+    const spentByCategory = Object.fromEntries(CATEGORIES.map(category => [category, 0n]));
+    for (const expense of expenses) {
+      if (expense.date.slice(0, 7) === month) {
+        spentByCategory[expense.category] += BigInt(expense.amount);
+      }
+    }
     const monthChanged = budgetMonth !== month;
     budgetMonth = month;
     document.getElementById("budget-month").textContent = today.toLocaleDateString("ru-RU", { month: "long", year: "numeric" });
+    document.getElementById("budget-calculation-error").hidden = storageReadable;
     if (monthChanged) budgetStatus.textContent = "";
 
     for (const field of budgetFields) {
       const amount = budgets[month]?.[field.category] ?? null;
+      const spent = spentByCategory[field.category];
       field.limit.textContent = !budgetsReadable ? "Лимиты недоступны"
         : amount === null ? "Лимит не задан" : `Лимит: ${formatMoney(amount)}`;
+      field.spent.textContent = `Потрачено: ${storageReadable ? formatMoney(spent) : "—"}`;
+      field.remaining.textContent = `Осталось: ${storageReadable && budgetsReadable && amount !== null
+        ? formatMoney(BigInt(amount) - spent) : "—"}`;
       field.remove.hidden = amount === null;
       field.input.disabled = field.save.disabled = field.remove.disabled = !budgetsReadable;
       if (monthChanged || field.savedAmount !== amount) {
@@ -181,6 +192,7 @@
       item.querySelector(".field-error").id = `${input.id}-error`;
       input.setAttribute("aria-describedby", `${limit.id} ${input.id}-error`);
       const field = { category, input, limit,
+        spent: item.querySelector(".budget-spent"), remaining: item.querySelector(".budget-remaining"),
         save: item.querySelector(".budget-save"), remove: item.querySelector(".budget-remove") };
       item.addEventListener("submit", (event) => {
         event.preventDefault();
